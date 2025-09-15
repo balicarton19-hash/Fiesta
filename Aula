@@ -1,0 +1,41 @@
+from blessed import Terminal 
+
+from Estudiante import Estudiante
+
+term = Terminal()
+
+class Aula:
+    def __init__ (self, nombre, grupo):
+        self.nombre = nombre
+        self.grupo = grupo
+        self.estudiantes = []
+
+    def inscribir_estudiantes(self, estudiante):
+        self.estudiantes.append(estudiante)
+
+    def mostrar_estudiantes(self):
+        for indice, estudiante in enumerate(self.estudiantes):
+            print(f"{indice}.- {estudiante}")
+        
+    def __str__(self):
+            return f"{term.bold_red}{self.grupo}{term.normal} "\
+                f" ubicado en el {term.green}{self.nombre}{term.normal}"
+
+def main():
+    print("Dentro de main")
+    M7A = Aula("Laboratorio 3", "M7A")
+    print(f"M7A: {M7A}")
+
+    paulina = Estudiante("Paulina", "Rubio", "Ramírez")
+    print(paulina)
+
+    jennifer = Estudiante("Jennifer", "Villareal", "Aparicio")
+    print(jennifer)
+
+    M7A.inscribir_estudiantes(paulina)
+    M7A.inscribir_estudiantes(jennifer)
+
+    M7A.mostrar_estudiantes()
+
+if __name__ == "__main__":
+    main()
